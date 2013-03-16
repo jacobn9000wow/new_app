@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to the Sample App!"
+      flash[:success] = "New account created!"
       redirect_to @user #Note that we can omit the user_url in the redirect, writing simply redirect_to @user to redirect to the user show page.
     else
       render 'new'

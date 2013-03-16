@@ -33,7 +33,7 @@ FirstApp::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
 
 
-  root to: 'static_pages#home'
+  root :to => 'static_pages#home'
 
   #match '/new_post', to: 'rooms#new_post'
 
@@ -41,6 +41,7 @@ FirstApp::Application.routes.draw do
  
   #match '/comment/:target_post_id' => 'comments#create'
   match '/new_post/:room_id' => 'posts#new'
+  match '/newroom', :to => 'rooms#new'
   match '/newroom', to: 'rooms#new'
   match '/signup',  to: 'users#new'	#gives named route signup_path
   match '/signin',  to: 'sessions#new'

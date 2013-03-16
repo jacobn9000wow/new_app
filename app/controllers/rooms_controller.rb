@@ -1,13 +1,14 @@
 class RoomsController < ApplicationController
 
-  before_filter :signed_in_user, only: [:create, :destroy, :show]
-  before_filter :correct_user, :show
+  before_filter :signed_in_user, only: [:new, :create, :destroy, :show]
+  before_filter :correct_user, only: [:show]
 
   def index
   end
 
   def new
     @room = Room.new
+    
   end
 
   def create
@@ -19,7 +20,8 @@ class RoomsController < ApplicationController
       @room.include!(current_user)	#defined in models/room.rb
       					#self.inclusions.create!(included_user_id: current_user.id)
 
-      redirect_to root_url
+      #redirect_to root_url
+      redirect_to room_path(@room)
     else
       render 'static_pages/home'
     end
