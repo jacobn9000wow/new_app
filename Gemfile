@@ -5,7 +5,19 @@ gem 'rails', '3.2.7'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'bing'
+
+gem 'gon'
+
+gem 'bootstrap-sass', '2.0.4'
+gem 'bcrypt-ruby', '3.0.1'
+
+gem 'will_paginate', '3.0.3'
+gem 'bootstrap-will_paginate', '0.0.6'
+
+group :development do
+  gem 'sqlite3'
+end
 
 
 # Gems used only for assets and not required
@@ -21,6 +33,10 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+group :production do
+  gem 'pg', '0.12.2'	#heroku uses postgreSQL
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
