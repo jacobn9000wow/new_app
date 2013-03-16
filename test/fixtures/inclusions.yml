@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  included_user_id: 1
+  including_room_id: 1
+
+two:
+  included_user_id: 1
+  including_room_id: 1

@@ -1,0 +1,28 @@
+<li>
+  
+  <b><%= User.find(post.user_id).name %></b>
+  <span class="timestamp">
+    <%= time_ago_in_words(post.created_at) %> ago.
+  </span>
+  <%= post.url%><br>
+  <% if post.url %>
+
+  
+  <% end %>
+  <%= post.content%><br>
+  <% if post.comments.any? %>
+    <%= render post.comments %>
+  <% end %><br>
+
+  <%= form_for :comments, :url => { :controller => :comments, 
+                         	    :action => :create, 
+                         	    :target_post_id => post.id } do |f| %>
+
+    
+    <%= f.text_field :content %>
+
+    <%= f.submit "Post comment" %>
+  <% end %>
+
+  
+</li>

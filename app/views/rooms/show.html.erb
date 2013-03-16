@@ -1,0 +1,43 @@
+<% provide(:title, @room.room_name) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= @room.room_name %>
+      </h1>
+      
+     
+      
+      <% if signed_in? %>
+         <%= link_to "New post", new_post_path(@room.id) %>
+         
+      <% end %>
+
+	
+
+    </section>
+
+<div class="span3">
+       <h3>Users</h3>
+       <% if @users.any? %>
+         <ul class="users">
+           <%= render @users %>
+         </ul> 
+       <% end %>
+     </div>
+  </aside>
+
+
+  <div class="span8">
+    <% if @room.posts.any? %>
+      <h3>Total posts (<%= @room.posts.count %>)</h3>
+      <ul class="posts">
+        <%= render @posts %>
+      </ul>
+    <% else %>
+      <h3>No posts</h3>
+    <% end %>
+  </div>
+</div>
+
+

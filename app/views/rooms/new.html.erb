@@ -1,0 +1,15 @@
+<% provide(:title, 'Create new room') %>
+<h1>Create new room</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@room) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :room_name %>
+      <%= f.text_field :room_name %>
+
+      <%= f.submit "Create new room", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

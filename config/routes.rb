@@ -1,4 +1,56 @@
-NewApp::Application.routes.draw do
+
+FirstApp::Application.routes.draw do
+
+  resources :users do
+    member do
+      get :groups	#Since both pages will be showing data, we use get to arrange for the URIs to respond to GET requests (as required by the REST convention for such pages), and the member method means that the routes respond to URIs containing the user id.
+    end
+  end
+
+  resources :rooms do
+    member do
+      get :members
+    end
+  end
+
+  
+ 
+  get "static_pages/home"
+
+  get "static_pages/help"
+
+  get "static_pages/about"
+
+  get "static_pages/contact"
+
+  #get "rooms/new_post"
+
+  resources :users
+  resources :posts,	only: [:new, :create, :destroy]
+  resources :rooms
+  resources :comments,   only: [:create]
+  resources :inclusions, only: [:create, :destroy]
+  resources :sessions, only: [:new, :create, :destroy]
+
+
+  root to: 'static_pages#home'
+
+  #match '/new_post', to: 'rooms#new_post'
+
+  #map.connect '/new_post/:room_id', controller=>'posts', :action=> 'new' #rails 2
+ 
+  #match '/comment/:target_post_id' => 'comments#create'
+  match '/new_post/:room_id' => 'posts#new'
+  match '/newroom', to: 'rooms#new'
+  match '/signup',  to: 'users#new'	#gives named route signup_path
+  match '/signin',  to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete #Note the use of via: :delete for the signout route, which indicates that it should be invoked using an HTTP DELETE request.
+#Note that the routes for signin and signout are custom, but the route for creating a session is simply the default (i.e., [resource name]_path)
+
+  match '/help',    to: 'static_pages#help'
+  match '/about',   to: 'static_pages#about'
+  match '/contact', to: 'static_pages#contact'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,24 @@
+<% provide(:title, 'Create new post') %>
+<h1>Create new post in this room</h1>
+
+<%= @room_id %>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for :posts, :url => { :controller => :posts, 
+                         	   :action => :create, 
+                         	   :target_room_id => @room_id } do |f| %>
+      
+
+      
+
+      <%= f.label :url %>
+      <%= f.text_field :url %>
+
+      <%= f.label :content %>
+      <%= f.text_field :content %>
+
+
+      <%= f.submit "Create new post", :room_id => @room_id, class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<% provide(:title, 'Home') %> 
+
+   
+  
+
+<% if signed_in? %>
+  <section>
+     <%= render 'shared/stats' %>
+  </section>
+<% end %>
+
+<div class="center hero-unit">
+  <h1>Welcome to Circle</h1>
+
+  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+  <br>
+
+</div>
+
+
+
+
+<div id="outer" style="position:relative">
+<% 0.times do |x| %>
+  <% 0.times do |y| %>
+    <% block_data = @a[x+12*y] %>
+    <% colour = block_data[:colour] %>
+      <div style="position:absolute; left: <%=50*x%>px; top: <%=50*y%>px;background-color:<%= colour%>;width:50px;height:50px;border:1px solid #000">aqwertyuiop[]asdfghjkl</div>
+    <% end %>
+  <% end %>
+</div>
+
