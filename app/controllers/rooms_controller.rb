@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
 
   before_filter :signed_in_user, only: [:new, :create, :destroy, :show]
-  before_filter :correct_user, only: [:show]
+  before_filter :correct_user, only: [:show]#, :add_member]	#correct_user checks if current_user is a member of this room
 
   def index
   end
@@ -14,7 +14,7 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new(params[:room]) #current_user.rooms.build(params[:room])
     if @room.save
-      flash[:success] = "Room created!"
+      flash[:success] = "Room created"
 
       #make a new Inclusion
       @room.include!(current_user)	#defined in models/room.rb
@@ -26,6 +26,22 @@ class RoomsController < ApplicationController
       render 'static_pages/home'
     end
   end
+
+  
+
+  #def join
+    #@room = Room.find_by_id(params[:format]) #format or id ?
+  #end
+
+  #def admit_new_member
+  #  room = Room.find(params[:room_id])
+  #  if room.authenticate(params[:room_password])
+  #    room.include!(current_user)
+  #    flash[:success] = 'Room joined'
+  # else
+  #    flash[:error] = 'Invalid password'
+  # end
+  #end
 
   #params include :room_id to post in     ?
   #def new_post
@@ -42,8 +58,12 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     @posts = @room.posts
+    @posts.reverse!
     @users = @room.included_users
     #:room_id = params[:id]
+
+    @room_id = @room.id #to be used in the form for a new post
+    @post = Post.new
   end
 
   private

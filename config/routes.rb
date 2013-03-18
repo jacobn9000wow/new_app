@@ -1,6 +1,12 @@
 
 FirstApp::Application.routes.draw do
 
+  
+
+  resources :invitations
+
+  match '/users/create(/:token)', to: 'users#create'
+
   resources :users do
     member do
       get :groups	#Since both pages will be showing data, we use get to arrange for the URIs to respond to GET requests (as required by the REST convention for such pages), and the member method means that the routes respond to URIs containing the user id.
@@ -25,6 +31,9 @@ FirstApp::Application.routes.draw do
 
   #get "rooms/new_post"
 
+  root :to => 'static_pages#home'
+  #match '/' to: 'static_pages#home'
+
   resources :users
   resources :posts,	only: [:new, :create, :destroy]
   resources :rooms
@@ -33,17 +42,26 @@ FirstApp::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
 
 
-  root :to => 'static_pages#home'
+  
 
   #match '/new_post', to: 'rooms#new_post'
 
   #map.connect '/new_post/:room_id', controller=>'posts', :action=> 'new' #rails 2
  
   #match '/comment/:target_post_id' => 'comments#create'
+  #match '/confirm/:token', :to => 'invitation#redeem'
+  #match '/new_invite/:invitation', :to => 'users#new_invite', :as => 'new_invite'
+  
+  match '/confirm/:token', :to => 'invitations#redeem', :as => 'confirm'
+  match '/invitation/:token' => 'invitations#show'
+  #match '/users/new_invite/:room_id' => 'users#new_invite' #should not be exposed to the web
   match '/new_post/:room_id' => 'posts#new'
+  match '/new_invitation/:room_id' => 'invitations#new'
   match '/newroom', :to => 'rooms#new'
+  match '/join_room' => 'rooms#join'
   match '/newroom', to: 'rooms#new'
-  match '/signup',  to: 'users#new'	#gives named route signup_path
+  match '/signup(/:token)',  to: 'users#new'	#gives named route signup_path
+  #match "/signup(/:token)", controller => "users", :action => "new"
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete #Note the use of via: :delete for the signout route, which indicates that it should be invoked using an HTTP DELETE request.
 #Note that the routes for signin and signout are custom, but the route for creating a session is simply the default (i.e., [resource name]_path)

@@ -1,0 +1,12 @@
+<% provide(:title, 'New Invitation') %>
+<h1>New invitation</h1>
+
+
+<div>
+<b>Room:</b> <%= Room.find_by_id(@invitation.room_id).room_name %><br>
+<b>Give this URL to a friend:</b>
+<%= @invite_url %>
+</div>
+
+
+

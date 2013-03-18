@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+<h2>Invitation</h2>
+<p>
+  <b>Room:</b>
+  <%= Room.find_by_id(@invitation.room_id).room_name %>
+</p>
+
+<p>
+  <b>Sender:</b>
+  <%= User.find_by_id(@invitation.sender_id).name %>
+</p>
+
+<p>
+  <b>Token:</b>
+  <%= @invitation.token %>
+</p>
+
+<p>
+  <b>Sent at:</b>
+  <%= @invitation.sent_at %>
+</p>
+
+<% if signed_in? %>
+  <% if @already_in_group %>
+    You are already in this group
+  <% else %>
+    <%= link_to "Confirm", confirm_path(@invitation.token) %>
+  <% end %>
+<% else %>
+  <%= link_to "Sign up and confirm", confirm_path(@invitation.token) %>
+<% end %>
+
+

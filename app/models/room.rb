@@ -7,6 +7,15 @@ class Room < ActiveRecord::Base
 
   has_many :posts
 
+  #def add_member	#maybe make private?
+  #  @user = User.find_by_id(params[:user_id])
+  #  room = Room.find(params[:room_id])
+
+    #maybe check if both users (current user(inviter) and invitee) have rooms in common ?   
+
+  # room.include!(@user)
+ # end
+
   def including?(a_user)
     inclusions.find_by_included_user_id(a_user.id)
   end

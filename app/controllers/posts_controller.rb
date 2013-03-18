@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   def new
    #@post = Post.new
    
-   @room_id = params[:format]
+   @room_id = params[:format] #:format? 
 
    #@room = Room.find(params[:format])
    #Room.find(18) works fine
@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   #params include :room_id to post in     ?
   def create
     @room = Room.find(params[:target_room_id])
-    @post = @room.posts.create(params[:posts])
+    @post = @room.posts.create(params[:post])
     @post.user_id = current_user.id
 
     if @post.save!

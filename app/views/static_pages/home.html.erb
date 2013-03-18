@@ -11,8 +11,10 @@
 
 <div class="center hero-unit">
   <h1>Welcome to Circle</h1>
-
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+  <% if signed_in? %>
+  <% else %>
+    <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+  <% end %>
   <br>
 
 </div>

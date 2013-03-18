@@ -1,4 +1,5 @@
 module SessionsHelper
+
   def sign_in(user) #http://ruby.railstutorial.org/chapters/sign-in-sign-out#sec-a_working_sign_in_method
     cookies.permanent[:remember_token] = user.remember_token #the cookies utility supplied by Rails. We can use cookies as if it were a hash
     self.current_user = user

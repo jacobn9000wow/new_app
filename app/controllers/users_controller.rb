@@ -14,8 +14,17 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
-  def new
+  def new #passed an optional token parameter for invited users
     @user = User.new
+    @invited = false
+
+    @invitation = Invitation.find_by_token(params[:format])
+
+    if @invitation #was a token passed in?                ---- :format instead of :token   --why?
+      flash[:success] = "Invite token detected!"
+      @invited = true
+      @token = params[:format]
+    end
   end
 
   def show
@@ -24,6 +33,17 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+
+    @invitation = Invitation.find_by_token(params[:token])
+
+    if @invitation #was a token passed in?			---- :format instead of :token   --why?
+      @user.save
+      #@invitation = Invitation.find_by_token(params[:format])
+      Room.find(@invitation.room_id).include!(@user)
+      flash[:success] = "New account created and included in room!"
+      Invitation.find_by_token(params[:token]).delete
+    end
+        
     if @user.save
       sign_in @user
       flash[:success] = "New account created!"

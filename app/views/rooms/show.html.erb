@@ -10,6 +10,8 @@
       
       <% if signed_in? %>
          <%= link_to "New post", new_post_path(@room.id) %>
+         <br>
+         <%= link_to "Generate invitation", new_invitation_path(@room.id) %>
          
       <% end %>
 
@@ -28,7 +30,25 @@
   </aside>
 
 
+
   <div class="span8">
+
+    
+    <h2>New post</h2>
+
+    <%= form_for @post, :url => { :controller => :posts, 
+                         	   :action => :create, 
+                         	   :target_room_id => @room.id } do |f| %>
+      
+
+      <%= f.text_field :content %>
+
+
+      <%= f.submit "Create new post", class: "btn btn-large btn-primary" %>
+    <% end %>
+
+  
+
     <% if @room.posts.any? %>
       <h3>Total posts (<%= @room.posts.count %>)</h3>
       <ul class="posts">

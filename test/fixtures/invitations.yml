@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  room_id: 1
+  sender_id: 1
+  token: MyString
+  sent_at: 2013-03-16 20:41:33
+
+two:
+  room_id: 1
+  sender_id: 1
+  token: MyString
+  sent_at: 2013-03-16 20:41:33

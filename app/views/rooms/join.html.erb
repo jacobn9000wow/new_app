@@ -1,0 +1,18 @@
+<% provide(:title, 'Sign up') %>
+<h1>Join room</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(room) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :room_id %>
+      <%= f.text_field :room_id %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.submit "Join room", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
