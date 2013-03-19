@@ -12,5 +12,13 @@
       <%= render 'shared/stats' %>
     </section>
   </aside>
-
+  <div class="span8">
+    <h2>Groups</h2>
+    <% if @rooms.any? %>
+      <ul class="rooms">
+        <%= render @rooms %>
+      </ul>
+      
+    <% end %>
+  </div>
 </div>

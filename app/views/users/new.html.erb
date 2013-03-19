@@ -7,12 +7,12 @@
     <%= form_for (@user), :url => { :controller => :users, 
                          	   :action => :create, 
                          	   :token => @token } do |f| %>
-      
+      <%= render 'shared/error_messages', object: f.object %>
 
       <%= f.label :name %>
       <%= f.text_field :name %>
 
-      <%= f.label :email %>
+      <%= f.label :email %> (optional)
       <%= f.text_field :email %>
 
       <%= f.label :password %>
@@ -37,7 +37,7 @@
       <%= f.label :name %>
       <%= f.text_field :name %>
 
-      <%= f.label :email %>
+      <%= f.label :email %> (optional)
       <%= f.text_field :email %>
 
       <%= f.label :password %>

@@ -61,6 +61,7 @@ FirstApp::Application.routes.draw do
   match '/join_room' => 'rooms#join'
   match '/newroom', to: 'rooms#new'
   match '/signup(/:token)',  to: 'users#new'	#gives named route signup_path
+  match '/signup',  to: 'users#new'	#gives named route signup_path
   #match "/signup(/:token)", controller => "users", :action => "new"
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete #Note the use of via: :delete for the signout route, which indicates that it should be invoked using an HTTP DELETE request.

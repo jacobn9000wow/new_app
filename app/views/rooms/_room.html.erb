@@ -1,6 +1,9 @@
 <li>
   <%= link_to room.room_name, room %>
   <span class="timestamp">
-    Created <%= time_ago_in_words(room.created_at) %> ago.
+    <% if room.posts.any? %>
+    Most recent new post <%= time_ago_in_words(room.posts.last.created_at) %> ago.
+    <% end %>
+
   </span>
 </li>

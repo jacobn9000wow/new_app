@@ -1,13 +1,24 @@
 class InvitationsController < ApplicationController
+
+  before_filter :signed_in_user, only: [:new, :create]
+  before_filter :correct_user, only: [:new, :create]
   
-  def redeem
+  def redeem #all invitations go through here, whether signed in or not
    # >check token
     #room_id = Invitation.find_by_token(params[:token]).room_id
     @invitation = Invitation.find_by_token(params[:token])
+
+    if @invitation.nil? #another user was faster and used up this invitaion
+      flash[:failure] = "Invitation token not found; this invitation may have already been used."
+      redirect_to root_url
+      return
+    end
+
     if signed_in?
       #Room.find(params[:room_id]).add_member(current_user)
       Room.find(@invitation.room_id).include!(current_user)
-      redirect_to room_path(@room)
+      @invitation.delete
+      redirect_to root_url
       return
     else
       #new_invite(room_id) #redirect_to '/users/new_invite/:room_id' #new_invite_path()#'/users/new_invite/:room_id'
@@ -55,12 +66,22 @@ class InvitationsController < ApplicationController
     #@invitation = Invitation.find(params[:id])
     @invitation = Invitation.find_by_token(params[:token])
 
+    if @invitation.nil?
+      flash[:failure] = "Invitation token not found; this invitation may have already been used."
+      redirect_to root_url if @invitation.nil?
+      return
+    end
+
     @already_in_group = false
     @room = Room.find(@invitation.room_id)
     
-    if @room.including?(current_user)
-      @already_in_group = true
+
+    if signed_in?
+      if @room.including?(current_user)
+        @already_in_group = true
+      end
     end
+    
 
     unless @invitation
       redirect_to root_url
@@ -138,4 +159,11 @@ class InvitationsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+    def correct_user
+      @room = current_user.including_rooms.find_by_id(params[:format])
+      redirect_to root_url if @room.nil?
+    end
 end

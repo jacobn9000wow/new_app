@@ -29,6 +29,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @rooms = @user.including_rooms.paginate(page: params[:page])
   end
 
   def create
@@ -37,11 +38,18 @@ class UsersController < ApplicationController
     @invitation = Invitation.find_by_token(params[:token])
 
     if @invitation #was a token passed in?			---- :format instead of :token   --why?
-      @user.save
+      unless @user.save 
+        render 'new'
+        return
+      end
       #@invitation = Invitation.find_by_token(params[:format])
       Room.find(@invitation.room_id).include!(@user)
+      @room = Room.find(@invitation.room_id)
       flash[:success] = "New account created and included in room!"
       Invitation.find_by_token(params[:token]).delete
+      sign_in @user
+      redirect_to room_path(@room)
+      return
     end
         
     if @user.save
@@ -50,6 +58,7 @@ class UsersController < ApplicationController
       redirect_to @user #Note that we can omit the user_url in the redirect, writing simply redirect_to @user to redirect to the user show page.
     else
       render 'new'
+      return
     end
   end
 
@@ -72,6 +81,7 @@ class UsersController < ApplicationController
     @title = "Groups"
     @user = User.find(params[:id])
     @rooms = @user.including_rooms.paginate(page: params[:page])
+    #@rooms.sort_by.posts.last.created_at
     render 'show_groups'
   end
 
