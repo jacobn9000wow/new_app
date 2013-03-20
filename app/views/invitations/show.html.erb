@@ -10,16 +10,6 @@
   <%= User.find_by_id(@invitation.sender_id).name %>
 </p>
 
-<p>
-  <b>Token:</b>
-  <%= @invitation.token %>
-</p>
-
-<p>
-  <b>Sent at:</b>
-  <%= @invitation.sent_at %>
-</p>
-
 <% if signed_in? %>
   <% if @already_in_group %>
     You are already in this group

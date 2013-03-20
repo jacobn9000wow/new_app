@@ -78,6 +78,7 @@ class InvitationsController < ApplicationController
 
     if signed_in?
       if @room.including?(current_user)
+        flash[:failure] = "You are already a member of this room."
         @already_in_group = true
       end
     end
@@ -99,7 +100,7 @@ class InvitationsController < ApplicationController
   def new
     @invitation = Invitation.new
     @invitation.room_id = params[:format] #:format instead of :room_id for some reason
-    @invitation.sender_id = current_user#.user_id
+    @invitation.sender_id = current_user.id
     @invitation.save
 
     @invite_url = "localhost:3000/invitation/" + @invitation.token#.to_string

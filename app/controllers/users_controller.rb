@@ -73,6 +73,7 @@ class UsersController < ApplicationController
       sign_in @user
       redirect_to @user
     else
+      flash[:failure] = "Name is not available - sorry!"
       render 'edit'
     end
   end

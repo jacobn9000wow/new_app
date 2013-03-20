@@ -7,6 +7,6 @@ class Post < ActiveRecord::Base
   belongs_to :room
   has_many :comments
   
-  validates :content, presence: true, length: { maximum: 500 }
+  validates :content, presence: true#, length: { maximum: 500 }
   validates :user_id, presence: true
 end

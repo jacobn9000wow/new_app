@@ -37,7 +37,7 @@ FirstApp::Application.routes.draw do
   resources :users
   resources :posts,	only: [:new, :create, :destroy]
   resources :rooms
-  resources :comments,   only: [:create]
+  resources :comments,   only: [:create, :destroy]
   resources :inclusions, only: [:create, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
 

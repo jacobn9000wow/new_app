@@ -4,5 +4,11 @@
 
   <span class="timestamp">
     <%= time_ago_in_words(comment.created_at) %> ago.
-  </span><br>
+  </span>
+  <% if current_user?(User.find(comment.user_id)) %> |
+    <%= link_to "delete", comment, method: :delete,
+                                     data: { confirm: "You sure?" },
+                                     title: comment.content %>
+  <% end %>
+<br>
 </ul>

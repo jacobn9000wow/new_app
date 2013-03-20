@@ -4,12 +4,21 @@
   <span class="timestamp">
     <%= time_ago_in_words(post.created_at) %> ago.
   </span>
+  <% if current_user?(User.find(post.user_id)) %> |
+    <%= link_to "delete", post, method: :delete,
+                                     data: { confirm: "You sure?" },
+                                     title: post.content %>
+  <% end %>
   <%= post.url%><br>
   <% if post.url %>
 
   
   <% end %>
-  <%= post.content%><br>
+  <%= post.content %>
+
+  
+  <br>
+
   <% if post.comments.any? %>
     <%= render post.comments %>
   <% end %><br>
@@ -19,7 +28,7 @@
                          	    :target_post_id => post.id } do |f| %>
 
     
-    <%= f.text_field :content %>
+    <%= f.text_area :content, :size => "20x1" %>
 
     <%= f.submit "Post comment" %>
   <% end %>

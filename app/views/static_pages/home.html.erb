@@ -10,9 +10,11 @@
 <% end %>
 
 <div class="center hero-unit">
-  <h1>Welcome to Circle</h1>
+  <h2>Welcome to Tearoomy</h2>
+  
   <% if signed_in? %>
   <% else %>
+  Tearoomy allows you to create private message boards with your friends.<br><br><br>
     <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
   <% end %>
   <br>

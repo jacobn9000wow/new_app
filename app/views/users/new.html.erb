@@ -1,9 +1,9 @@
 <% provide(:title, 'Sign up') %>
-<h1>Sign up</h1>
+<h2>Sign up</h2>
 <% if @invited %>
 <div class="row">
   <div class="span6 offset3">
-    <h2>Invited</h2>
+    
     <%= form_for (@user), :url => { :controller => :users, 
                          	   :action => :create, 
                          	   :token => @token } do |f| %>
@@ -30,7 +30,7 @@
 <% else %>
 <div class="row">
   <div class="span6 offset3">
-    <h2>not Invited</h2>
+   
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 

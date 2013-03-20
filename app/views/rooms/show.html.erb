@@ -1,6 +1,8 @@
 <% provide(:title, @room.room_name) %>
+
+
 <div class="row">
-  <aside class="span4">
+  <aside class="span3">
     <section>
       <h2>
         <%= @room.room_name %>
@@ -10,22 +12,25 @@
       
       <% if signed_in? %>
          
-         <%= link_to "Generate invitation", new_invitation_path(@room.id) %>
+         <%= link_to "Generate invitation URL", new_invitation_path(@room.id) %>
+         <br><br>
          
       <% end %>
 
 	
 
-    </section>
+    
 
-<div class="span3">
-       <h2>Users</h2>
+</section>
+       <h2>Members</h2>
        <% if @users.any? %>
          <ul class="users">
            <%= render @users %>
          </ul> 
        <% end %>
-     </div>
+     
+
+
   </aside>
 
 
@@ -33,14 +38,14 @@
   <div class="span8">
 
     
-    <h2>New post</h2>
+    
 
     <%= form_for @post, :url => { :controller => :posts, 
                          	   :action => :create, 
                          	   :target_room_id => @room.id } do |f| %>
       
 
-      <%= f.text_field :content %>
+      <%= f.text_area :content, :size => "20x5" %>
 
 
       <%= f.submit "Create new post", class: "btn btn-large btn-primary" %>
@@ -54,7 +59,7 @@
         <%= render @posts %>
       </ul>
     <% else %>
-      <h3>No posts</h3>
+      <h5>No posts yet</h5>
     <% end %>
   </div>
 </div>
