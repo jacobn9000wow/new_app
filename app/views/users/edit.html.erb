@@ -6,10 +6,13 @@
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
-      <%= f.label :name %>
+      <%= f.label :name %> <span class="timestamp">Login name. Must be unique.</span>
       <%= f.text_field :name %>
 
-      <%= f.label :email %>
+      <%= f.label :screenname %> <span class="timestamp">This is the name that other users will see.</span>
+      <%= f.text_field :screenname %>
+
+      <%= f.label :email %> <span class="timestamp">Optional</span>
       <%= f.text_field :email %>
 
       <%= f.label :password %>
