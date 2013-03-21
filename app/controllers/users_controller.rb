@@ -20,6 +20,8 @@ class UsersController < ApplicationController
 
     @invitation = Invitation.find_by_token(params[:format])
 
+    @user.screenname = ""
+
     if @invitation #was a token passed in?                ---- :format instead of :token   --why?
       flash[:success] = "Invite token detected!"
       @invited = true
