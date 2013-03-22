@@ -33,6 +33,22 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @rooms = @user.including_rooms.paginate(page: params[:page])
     #@rooms.sort_by {|f| f.posts.last.created_at }
+
+    @all_posts = Array.new
+    @recent_posts = Array.new
+
+    @show_rooms_for_post = true
+
+    #trying to make a feed of recent posts
+    @rooms.each {|r| @all_posts += r.posts}	#------------------ this might be a very expensive step if there are lots of posts
+    #@recent_posts.sort_by.created_at
+    @all_posts.each do |p|                      #------------------ this too might be expensive
+      if p.created_at >= 1.day.ago 
+        @recent_posts << p
+        #p.drop #unless p.comments.last.created_at < 1.day.ago
+      end
+    end
+   #@recent_posts = @all_posts
   end
 
   def create

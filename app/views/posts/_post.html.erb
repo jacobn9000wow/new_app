@@ -1,9 +1,17 @@
 <li>
   
   <b><%= User.find(post.user_id).screenname %></b>
+
+  <% if @show_rooms_for_post %>
+    in <b><%= Room.find(post.room_id).room_name %></b>
+  <% end %>
+
   <span class="timestamp">
     <%= time_ago_in_words(post.created_at) %> ago.
   </span>
+  
+  
+  
   <% if current_user?(User.find(post.user_id)) %> |
     <%= link_to "delete", post, method: :delete,
                                      data: { confirm: "You sure?" },

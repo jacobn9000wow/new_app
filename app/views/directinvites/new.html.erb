@@ -1,0 +1,33 @@
+<% provide(:title, 'New Invitation') %>
+<h2>New invitation</h2>
+
+
+<div>
+<b>Room:</b> <%= Room.find_by_id(@directinvite.room_id).room_name %><br>
+<p>You can invite any user that you already share another group with.</p>
+<section>
+       <h2>Select username to invite:</h2>
+       <% if @rooms.any? %>
+         <ul class="users">
+           <% @rooms.each do |r| %>
+             <% r.included_users.each do |u| %>
+               <% if u != current_user && r != Room.find_by_id(@directinvite.room_id) %>
+                 <li>
+                   <b>Room:</b> <%= r.room_name %>
+                   <b>User:</b> <%= u.screenname %>
+                   <%= link_to "Invite",  %>
+                 </li>
+               <% end %>
+             <% end %>
+           <% end %>
+         </ul> 
+       <% end %>
+     
+
+
+  </section>
+
+</div>
+
+
+

@@ -40,6 +40,7 @@ FirstApp::Application.routes.draw do
   resources :comments,   only: [:create, :destroy]
   resources :inclusions, only: [:create, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
+  resources :directinvites
 
 
   
@@ -57,6 +58,7 @@ FirstApp::Application.routes.draw do
   #match '/users/new_invite/:room_id' => 'users#new_invite' #should not be exposed to the web
   match '/new_post/:room_id' => 'posts#new'
   match '/new_invitation/:room_id' => 'invitations#new'
+  match '/new_directinvite/:room_id' => 'directinvites#new' #<%= link_to "Invite by username", new_directinvite_path(@room.id) %>
   match '/newroom', :to => 'rooms#new'
   match '/join_room' => 'rooms#join'
   match '/newroom', to: 'rooms#new'

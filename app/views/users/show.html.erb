@@ -22,5 +22,14 @@
       </ul>
       
     <% end %>
+    
+    <% if @recent_posts.any? %>
+    <br>
+    <h2>Recent posts - Less than 1 day</h2>
+      <ul class="rooms">
+         <%= render @recent_posts %> 
+      </ul>
+    <% end %>
+
   </div>
 </div>

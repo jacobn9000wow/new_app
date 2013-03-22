@@ -3,11 +3,12 @@
 
 
 <div>
-<b>Room:</b> <%= Room.find_by_id(@invitation.room_id).room_name %><br>
-<b>Invitation URL:</b>
+<b>Room: </b> <%= Room.find_by_id(@invitation.room_id).room_name %><br><br>
+<b>Invitation URL: </b>
 <%= @invite_url %>
 <br><br><br>
-Give this invitation URL to the invitee.
+<h5>
+<b>Give this invitation URL to the invitee.</b></h5>
 </div>
 
 
