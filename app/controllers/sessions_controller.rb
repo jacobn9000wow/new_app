@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
       
       respond_to do |format|
         format.html { render 'new' }# show.html.erb
-        format.json { render json: @invitation }
+        format.json { render :json => {:message => 'Invalid username/password combination'}}
       end
 
     end
