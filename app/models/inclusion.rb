@@ -1,5 +1,5 @@
 class Inclusion < ActiveRecord::Base
-  attr_accessible :included_user_id, :including_room_id
+  attr_accessible :included_user_id, :including_room_id, :color
 
   belongs_to :included_user, class_name: "User"
   belongs_to :including_room, class_name: "Room"

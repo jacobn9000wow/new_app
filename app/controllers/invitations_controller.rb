@@ -49,16 +49,16 @@ class InvitationsController < ApplicationController
   #  render 'users#new'
  # end
 
-  # GET /invitations
+  # GET /invitations     ------------------------ NO!  this gives out a list of current invitation tokens to anybody!
   # GET /invitations.json
-  def index
-    @invitations = Invitation.all
+  #def index
+  #  @invitations = Invitation.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @invitations }
-    end
-  end
+  #  respond_to do |format|
+  #    format.html # index.html.erb
+  #    format.json { render json: @invitations }
+  #  end
+ # end
 
   # GET /invitations/1            - :token instead of :id
   # GET /invitations/1.json

@@ -49,6 +49,13 @@ class UsersController < ApplicationController
       end
     end
    #@recent_posts = @all_posts
+
+    #http://stackoverflow.com/questions/4318962/ruby-on-rails-render-json-for-multiple-models
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render :json => {:user => @user, :rooms => @rooms, :recent_posts => @recent_posts} }
+    end
   end
 
   def create

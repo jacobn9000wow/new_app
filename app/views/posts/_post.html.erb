@@ -1,5 +1,7 @@
 <li>
   
+  
+
   <b><%= User.find(post.user_id).screenname %></b>
 
   <% if @show_rooms_for_post %>
@@ -22,10 +24,16 @@
 
   
   <% end %>
+
+  <% if User.find(post.user_id).inclusions == "#FFF0F0" %><% end %>
+  <% if Inclusions.find(post.user_id).color == "#FFF0F0" %><% end %>
+
+  <p style="background-color:#FFF0F0;">
   <%= post.content %>
+  </p>
 
   
-  <br>
+  
 
   <% if post.comments.any? %>
     <%= render post.comments %>

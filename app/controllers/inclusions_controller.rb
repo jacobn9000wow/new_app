@@ -4,6 +4,7 @@ class InclusionsController < ApplicationController
   def create
     @room = Room.find(params[:inclusion][:included_id])
     current_user.be_included!(@room)
+    @room.color = #FFF0F0
     redirect_to @room
   end
   

@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    
   end
 
   def create
@@ -12,7 +13,14 @@ class SessionsController < ApplicationController
     else
       # Create an error message and re-render the signin form.
       flash.now[:error] = 'Invalid username/password combination'
-      render 'new'
+
+      #render 'new'
+      
+      respond_to do |format|
+        format.html { render 'new' }# show.html.erb
+        format.json { render json: @invitation }
+      end
+
     end
   end
 
