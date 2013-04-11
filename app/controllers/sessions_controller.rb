@@ -16,10 +16,12 @@ class SessionsController < ApplicationController
       flash.now[:error] = 'Invalid username/password combination'
 
       #render 'new'
+
+      @message = 999
       
       respond_to do |format|
         format.html { render 'new' }# show.html.erb
-        format.json { render :json => {:message => 'Invalid username/password combination'}}
+        format.json { render :json => {:message => @message}}
       end
 
     end
