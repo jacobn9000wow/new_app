@@ -10,18 +10,22 @@ class SessionsController < ApplicationController
       # Sign the user in and redirect to the user's show page.
       sign_in user
       #redirect_back_or user #http://ruby.railstutorial.org/chapters/updating-showing-and-deleting-users#code-friendly_session_create
-      redirect_to user
+      
+      respond_to do |format|
+        format.html { redirect_to user }# show.html.erb
+        format.json { render :json => {:success => true, :user_id_num => user.user_id}}
+      end
+
+      
     else
       # Create an error message and re-render the signin form.
       flash.now[:error] = 'Invalid username/password combination'
 
       #render 'new'
-
-      @message = 999
       
       respond_to do |format|
         format.html { render 'new' }# show.html.erb
-        format.json { render :json => {:message => @message}}
+        format.json { render :json => {:success => false}}
       end
 
     end

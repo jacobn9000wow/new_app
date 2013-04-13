@@ -20,13 +20,13 @@
                                      title: post.content %>
   <% end %>
   <%= post.url%><br>
+
   <% if post.url %>
 
   
   <% end %>
 
-  <% if User.find(post.user_id).inclusions == "#FFF0F0" %><% end %>
-  <% if Inclusions.find(post.user_id).color == "#FFF0F0" %><% end %>
+  
 
   <p style="background-color:#FFF0F0;">
   <%= post.content %>

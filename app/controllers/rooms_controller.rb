@@ -64,6 +64,21 @@ class RoomsController < ApplicationController
 
     @room_id = @room.id #to be used in the form for a new post
     @post = Post.new
+
+    
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json do        
+          #make an array of hashes of posts/comments for json
+          @post_tree = Array.new
+          @posts.each do |p|
+            @post_tree << {:top_level_post => p, :comments => p.comments}
+          end
+          render :json => {:posts => @post_tree } 
+      end
+    end
+
   end
 
   private
