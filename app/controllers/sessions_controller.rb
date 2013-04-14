@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
       respond_to do |format|
         format.html { redirect_to user }# show.html.erb
-        format.json { render :json => {:success => true, :user_id_num => user.user_id}}
+        format.json { render :json => {:success => true}}
       end
 
       
@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
       
       respond_to do |format|
         format.html { render 'new' }# show.html.erb
-        format.json { render :json => {:success => false, :params => params}}
+        format.json { render :json => {:success => false}}
       end
 
     end
