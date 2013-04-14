@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
       respond_to do |format|
         format.html { redirect_to user }# show.html.erb
-        format.json { render :json => {:success => true}}
+        format.json { render :json => {:success => true, :user_id_num => User.find_by_name(params[:session][:name].downcase).user_id}}
       end
 
       
