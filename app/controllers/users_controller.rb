@@ -54,7 +54,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render :json => {:success => true}}#, :user_id_num => @user.user_id, :screen_name => @user.screenname, :rooms => @rooms, :recent_posts => @recent_posts} }
+      format.json { render :json => {:success => true, :user_id_num => @user.id, :screen_name => @user.screenname, :rooms => @rooms, :recent_posts => @recent_posts} }
     end
   end
 
