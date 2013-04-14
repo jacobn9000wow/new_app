@@ -11,10 +11,12 @@ class SessionsController < ApplicationController
       sign_in user
       #redirect_back_or user #http://ruby.railstutorial.org/chapters/updating-showing-and-deleting-users#code-friendly_session_create
       
-      respond_to do |format|
-        format.html { redirect_to user }# show.html.erb
-        format.json { render :json => {:success => true, :user_id_num => user.user_id}}
-      end
+      redirect_to user
+
+      #respond_to do |format|
+      #  format.html { redirect_to user }# show.html.erb
+      #  format.json { render :json => {:success => true, :user_id_num => user.user_id}}
+     # end
 
       
     else
