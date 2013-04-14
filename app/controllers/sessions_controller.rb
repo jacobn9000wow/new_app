@@ -13,11 +13,11 @@ class SessionsController < ApplicationController
       
       #redirect_to user
 
-      @user = User.find_by_name(params[:session][:name].downcase)
+      #@user = User.find_by_name(params[:session][:name].downcase)
 
       respond_to do |format|
         format.html { redirect_to user }# show.html.erb
-        format.json { render :json => {:success => true}}
+        format.json { redirect_to user}#render :json => {:success => true}}
       end
 
       
