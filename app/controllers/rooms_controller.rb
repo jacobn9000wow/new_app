@@ -71,12 +71,12 @@ class RoomsController < ApplicationController
       format.html # show.html.erb
       format.json do        
           #make an array of hashes of posts/comments for json
-        #  @post_tree = Array.new
-        #  @posts.each do |p|
-        #    @post_tree << {:top_level_post => p, :comments => p.comments}
-        #  end
-        #  render :json => {:posts => @post_tree } 
-	render :json => {:ok => "okay" } 
+          @post_tree = Array.new
+          @posts.each do |p|
+            @post_tree << {:top_level_post => p, :comments => p.comments}
+          end
+          render :json => {:posts => @post_tree } 
+	#render :json => {:ok => "okay" } 
       end
     end
 
