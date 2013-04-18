@@ -75,7 +75,7 @@ class RoomsController < ApplicationController
           @posts.each do |p|
 
 	    @comments = Array.new
-            p.comments each do |c|
+            p.comments.each do |c|
               @comments << {:comment => c, :author => User.find(c.user_id).screenname}
             end
 
