@@ -73,7 +73,14 @@ class RoomsController < ApplicationController
           #make an array of hashes of posts/comments for json
           @post_tree = Array.new
           @posts.each do |p|
-            @post_tree << {:top_level_post => p, :comments => p.comments}
+
+	    @comments = Array.new
+            p.comments each do |c|
+              @comments << {:comment => c, :author => User.find(c.user_id).screenname}
+            end
+
+            @post_tree << {:top_level_post => p, :author => User.find(p.user_id).screenname, :comments => @comments}# p.comments}
+
           end
           render :json => {:posts => @post_tree } 
 	#render :json => {:ok => "okay" } 
