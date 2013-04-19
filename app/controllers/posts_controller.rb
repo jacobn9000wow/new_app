@@ -23,14 +23,22 @@ class PostsController < ApplicationController
     @room = Room.find(params[:target_room_id])
     @post = @room.posts.create(params[:post])
     @post.user_id = current_user.id
+    @success = false
 
     if @post.save
       flash[:success] = "Post created!"
+      @success = true
     
     else
       flash[:failure] = "Failed to create post. Posts cannot be empty."
+      @success = false
     end
-    redirect_to room_path(@room)
+    
+
+    respond_to do |format|
+      format.html { redirect_to room_path(@room) }# show.html.erb
+      format.json { render :json => {:success => @success}} 
+    end
     
   end
 
