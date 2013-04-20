@@ -55,6 +55,7 @@ FirstApp::Application.routes.draw do
   
   post 'signinmobile' => 'sessions#create', :as => 'loginmobile'
   post 'newpostmobile' => 'posts#create'#, :as => ''
+  post 'newposreplymobile' => 'comments#create'
   match '/confirm/:token', :to => 'invitations#redeem', :as => 'confirm'
   match '/invitation/:token' => 'invitations#show'
   #match '/users/new_invite/:room_id' => 'users#new_invite' #should not be exposed to the web

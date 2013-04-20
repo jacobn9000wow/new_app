@@ -8,17 +8,23 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     @comment.room_id = @post.room_id
 
+    @success = false
+
     if @comment.save!
-      flash[:success] = "Comment created!"
-      
-      
-    
+      flash[:success] = "Comment created!" 
+      @success = true      
     else
       flash[:failure] = "Failed to create comment!"
     end
 
     @room = @post.room
-    redirect_to room_path(@room)
+
+    @target_room_id = params[:target_room_id]
+    respond_to do |format|
+      format.html { redirect_to room_path(@room) }# show.html.erb
+      format.json { render :json => {:success => @success}} 
+    end
+
   end
 
    def destroy
