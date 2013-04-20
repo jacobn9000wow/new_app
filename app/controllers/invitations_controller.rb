@@ -108,7 +108,7 @@ class InvitationsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json format.json { render :json => {:success => true, :invitation => @invitation}}
+      format.json { render :json => {:success => true, :invitation => @invitation}}
     end
   end
 
