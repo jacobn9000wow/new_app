@@ -77,14 +77,25 @@ class UsersController < ApplicationController
       redirect_to room_path(@room)
       return
     end
-        
+    
+    
+    
     if @user.save
       sign_in @user
       flash[:success] = "New account created!"
-      redirect_to @user #Note that we can omit the user_url in the redirect, writing simply redirect_to @user to redirect to the user show page.
+      respond_to do |format|
+        format.html { redirect_to @user }# #Note that we can omit the user_url in the redirect, writing simply redirect_to @user to redirect to the user show page.
+        format.json { render :json => {:success => true}} 
+      end
+       
     else
-      render 'new'
-      return
+      respond_to do |format|
+        format.html do 
+          render 'new'
+          return
+        end
+        format.json {render :json => {:success => false}}                
+      end    
     end
   end
 

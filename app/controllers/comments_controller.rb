@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
 
     @room = @post.room
 
-    @target_room_id = params[:target_room_id]
+    #@target_room_id = params[:target_room_id]
     respond_to do |format|
       format.html { redirect_to room_path(@room) }# show.html.erb
       format.json { render :json => {:success => @success}} 

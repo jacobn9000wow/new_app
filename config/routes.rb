@@ -53,6 +53,7 @@ FirstApp::Application.routes.draw do
   #match '/confirm/:token', :to => 'invitation#redeem'
   #match '/new_invite/:invitation', :to => 'users#new_invite', :as => 'new_invite'
   
+  post 'signupmobile' => 'users#create'
   post 'signinmobile' => 'sessions#create', :as => 'loginmobile'
   post 'newpostmobile' => 'posts#create'#, :as => ''
   post 'newposreplymobile' => 'comments#create'
