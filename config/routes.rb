@@ -54,6 +54,7 @@ FirstApp::Application.routes.draw do
   #match '/new_invite/:invitation', :to => 'users#new_invite', :as => 'new_invite'
   
   post 'newroommobile' => 'rooms#create'
+  post 'newinvitemobile' => 'invitations#create'
   post 'signupmobile' => 'users#create'
   post 'signinmobile' => 'sessions#create', :as => 'loginmobile'
   post 'newpostmobile' => 'posts#create'#, :as => ''

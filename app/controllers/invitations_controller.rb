@@ -126,7 +126,7 @@ class InvitationsController < ApplicationController
     respond_to do |format|
       if @invitation.save
         format.html { redirect_to @invitation, notice: 'Invitation was successfully created.' }
-        format.json { render json: @invitation, status: :created, location: @invitation }
+        format.json { render :json => {:success => true, :token => @invitation.token}}
       else
         format.html { render action: "new" }
         format.json { render json: @invitation.errors, status: :unprocessable_entity }
