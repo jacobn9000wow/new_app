@@ -118,20 +118,22 @@ class InvitationsController < ApplicationController
   end
 
   # POST /invitations
-  # POST /invitations.json
-  def create
+  # POST /invitations.json  
+  def create			
     @invitation = Invitation.new(params[:invitation])
-    
-
-    respond_to do |format|
+        
       if @invitation.save
-        format.html { redirect_to @invitation, notice: 'Invitation was successfully created.' }
-        format.json { render :json => {:success => true, :token => @invitation.token}}
+        respond_to do |format|
+          format.html { redirect_to @invitation, notice: 'Invitation was successfully created.' }
+          format.json { render :json => {:success => true, :token => @invitation.token}}
+        end
       else
-        format.html { render action: "new" }
-        format.json { render json: @invitation.errors, status: :unprocessable_entity }
+        respond_to do |format|
+          format.html { render action: "new" }
+          format.json { render  :json => {:success => false, :errors => @invitation.errors}  }
+        end
       end
-    end
+    
   end
 
   # PUT /invitations/1
