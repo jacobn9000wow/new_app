@@ -107,7 +107,7 @@ class InvitationsController < ApplicationController
     @invite_url = root_url + "invitation/" + @invitation.token#.to_string
 
     respond_to do |format|
-      format.html # new.html.erb
+      #format.html # new.html.erb
       format.json { render :json => {:success => true, :invitation => @invitation}}
     end
   end
