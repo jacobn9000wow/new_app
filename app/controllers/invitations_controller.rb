@@ -106,10 +106,10 @@ class InvitationsController < ApplicationController
     #@invite_url = "localhost:3000/invitation/" + @invitation.token#.to_string
     @invite_url = root_url + "invitation/" + @invitation.token#.to_string
 
-    #respond_to do |format|
-    #  format.html # new.html.erb
-    #  format.json { render json: @invitation }
-    #end
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @invitation }
+    end
   end
 
   # GET /invitations/1/edit
