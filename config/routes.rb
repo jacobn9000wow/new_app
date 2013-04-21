@@ -53,11 +53,11 @@ FirstApp::Application.routes.draw do
   #match '/confirm/:token', :to => 'invitation#redeem'
   #match '/new_invite/:invitation', :to => 'users#new_invite', :as => 'new_invite'
   
-  post 'newroommobile' => 'rooms#new'
+  post 'newroommobile' => 'rooms#create'
   post 'signupmobile' => 'users#create'
   post 'signinmobile' => 'sessions#create', :as => 'loginmobile'
   post 'newpostmobile' => 'posts#create'#, :as => ''
-  post 'newposreplymobile' => 'comments#create'
+  post 'newpostreplymobile' => 'comments#create'
   match '/confirm/:token', :to => 'invitations#redeem', :as => 'confirm'
   match '/invitation/:token' => 'invitations#show'
   #match '/users/new_invite/:room_id' => 'users#new_invite' #should not be exposed to the web
