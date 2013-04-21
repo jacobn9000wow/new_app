@@ -20,10 +20,18 @@ class RoomsController < ApplicationController
       @room.include!(current_user)	#defined in models/room.rb
       					#self.inclusions.create!(included_user_id: current_user.id)
 
-      #redirect_to root_url
-      redirect_to room_path(@room)
-    else
-      render 'static_pages/home'
+      #redirect_to root_url   
+
+      respond_to do |format|
+        format.html { redirect_to room_path(@room) }# show.html.erb
+        format.json { render :json => {:success => true}} 
+      end
+
+    else    
+      respond_to do |format|
+        format.html { render 'static_pages/home' }
+        format.json { render :json => {:success => false}} 
+      end
     end
   end
 
