@@ -90,7 +90,13 @@ class RoomsController < ApplicationController
             @post_tree << {:top_level_post => p, :author => User.find(p.user_id).screenname, :comments => @comments, :time => p.created_at}# p.comments}
 
           end
-          render :json => {:posts => @post_tree } 
+
+          @member_list = Array.new
+          @users.each.do |u|
+            member_list << u.screenname
+          end
+
+          render :json => {:posts => @post_tree, :members => @member_list } 
 	#render :json => {:ok => "okay" } 
       end
     end
