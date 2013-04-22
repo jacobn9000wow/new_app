@@ -84,10 +84,10 @@ class RoomsController < ApplicationController
 
 	    @comments = Array.new
             p.comments.each do |c|
-              @comments << {:comment => c, :author => User.find(c.user_id).screenname, :time => time_ago_in_words(c.created_at)}
+              @comments << {:comment => c, :author => User.find(c.user_id).screenname, :time =>c.created_at}
             end
 
-            @post_tree << {:top_level_post => p, :author => User.find(p.user_id).screenname, :comments => @comments, :time => time_ago_in_words(p.created_at)}# p.comments}
+            @post_tree << {:top_level_post => p, :author => User.find(p.user_id).screenname, :comments => @comments, :time => p.created_at}# p.comments}
 
           end
           render :json => {:posts => @post_tree } 
