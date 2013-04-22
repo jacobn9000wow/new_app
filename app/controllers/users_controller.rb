@@ -52,6 +52,12 @@ class UsersController < ApplicationController
 
     #http://stackoverflow.com/questions/4318962/ruby-on-rails-render-json-for-multiple-models
 
+
+    #@room_most_recent_post_time = Array.new
+    #@rooms.each do |r|
+    #  @room_most_recent_post_time << {time_ago_in_words(room.posts.last.created_at)}
+    #end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => {:success => true, :user_id_num => @user.id, :screen_name => @user.screenname, :rooms => @rooms, :recent_posts => @recent_posts} }
