@@ -92,8 +92,8 @@ class RoomsController < ApplicationController
           end
 
           @member_list = Array.new
-          @users.each.do |u|
-            member_list << u.screenname
+          @users.each do |u|
+            @member_list << {:screenname => u.screenname}
           end
 
           render :json => {:posts => @post_tree, :members => @member_list } 
